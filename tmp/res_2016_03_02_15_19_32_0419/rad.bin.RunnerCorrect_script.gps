@@ -1,0 +1,11 @@
+set autoscale xy
+          set style data lines
+          set logscale x
+          plot "signal.txt" using 2:1
+          replot "signal.correct.txt" using 2:1
+          # pause -1 "Press Ok or Cancel to continue ..."
+          # pause 15
+        
+unset output
+set terminal windows #added by runner to restore interactive mode
+replot

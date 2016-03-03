@@ -1,0 +1,99 @@
+<?xml version='1.0' encoding='utf-8'?>
+
+<!--  A SAMPLE set of task description  -->
+<worker 
+    title="Aerosol Scat. Ratio"
+    date="2006.08.04"
+    author="Ivan V. Boichenko" >
+
+<module type="console">  
+      <title> Loading LIDAR signals </title>
+      <exec_name> rad.bin.RunnerLoad </exec_name>
+      <exec_type> console java </exec_type>
+      <exec_md5_hash/>
+      <exec_path> rad.bin </exec_path>
+      <parameters>
+      <parCat nameCat="signal characteristics">
+        <par name="strob_duration" type="float" unit="ns"/> 
+        <par name="spatial_resolution" type="float" unit="km"/>
+        <comments>  strob_duration and spatial_resolution 
+              always defined automatically   </comments>        
+        <par name="initial_altitude" type="float">
+          0.0
+        </par>
+        <par name="lidar_data_file" type="string">
+          {lidar.data.file}
+        </par> 
+        <comments>  initial altitude of LIDAR </comments>
+      </parCat>
+      </parameters>
+      <inFormat>
+        <inFile>
+          <name>count.txt</name>
+          <name>count.txt</name>
+          <startRow> 13 </startRow>
+          <col num="1">
+              <name> raw_signal </name>
+            <unit> photon number </unit>
+          </col>
+        </inFile>
+      </inFormat>
+      <outFormat>
+        <outFile> <name> signal.txt </name>
+          <col num="1">
+              <name> altitude </name>
+            <unit> km </unit>
+          </col>
+          <col num="2">
+            <name> signal </name>
+            <unit> photon number </unit>
+          </col>
+        </outFile>
+      </outFormat>
+      <!-- graphics type="gnuplot">
+        <script>
+          set autoscale xy
+          set style data lines
+          plot "signal.txt" using 2:1 
+          # pause -1 "Press Ok or Cancel to continue ..."
+          # pause 15
+        </script> 
+      </graphics -->
+   </module>
+<module name="Correcting LIDAR signals">
+  <title> Correcting LIDAR signals </title>
+  <exec_name> rad.bin.RunnerCorrectSLipNew </exec_name>
+  <sufix> correct </sufix>
+  <exec_path> rad.bin </exec_path>
+  <parameters>
+    <par name="tau_slip" type="float">
+      0.00000004
+    </par> 
+  </parameters>
+  <outFile> 
+        <name> signal*.txt  </name>
+        <cols>
+          <col num="1">
+              <name> altitude </name>
+            <unit> km </unit>
+          </col>
+          <col num="2">
+            <name> signal </name>
+            <unit> photons </unit>
+          </col>
+        </cols> 
+     </outFile>
+     <graphics type="gnuplot">
+        <script>
+          set autoscale xy
+          set style data lines
+          set logscale x
+          plot "signal.txt" using 2:1
+          replot "signal.correct.txt" using 2:1
+          # pause -1 "Press Ok or Cancel to continue ..."
+          # pause 15
+        </script> 
+      </graphics>
+</module>
+
+</worker>

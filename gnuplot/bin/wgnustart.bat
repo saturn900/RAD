@@ -1,0 +1,1 @@
+C:\eclipse311\workspace\gnuplot\bin\wgnuplot.exe -persist %1

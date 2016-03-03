@@ -1,0 +1,29 @@
+set pm3d at b 
+set ticslevel 0.8 
+set hidden3d 
+set view 45,50 
+set isosamples 100,20 
+
+
+splot  'E:\1document\4student\uir2007\Nikolaeva\_practice\copy\6s.txt'  matrix using 3:2:1 with lines 
+pause 0.2 
+
+splot  'E:\1document\4student\uir2007\Nikolaeva\_practice\copy\worker_2006_10_02_16_35_44_0500\1\2\6s.txt'  matrix using 3:2:1 with lines 
+pause 0.2 
+
+splot  'E:\1document\4student\uir2007\Nikolaeva\_practice\copy\worker_2006_10_02_16_35_44_0500\1\6s.txt'  matrix using 3:2:1 with lines 
+pause 0.2 
+
+splot  'E:\1document\4student\uir2007\Nikolaeva\_practice\copy\worker_2006_10_02_16_35_44_0500\6s.txt'  matrix using 3:2:1 with lines 
+pause 0.2 
+
+splot  'E:\1document\4student\uir2007\Nikolaeva\_practice\copy\worker_2006_10_02_16_35_48_0640\6s.txt'  matrix using 3:2:1 with lines 
+pause 0.2 
+
+splot  'E:\1document\4student\uir2007\Nikolaeva\_practice\copy\worker_2006_10_02_16_35_51_0171\6s.txt'  matrix using 3:2:1 with lines 
+pause 0.2 
+
+
+pause -1 "Press OK to see the next" 
+reset 
+

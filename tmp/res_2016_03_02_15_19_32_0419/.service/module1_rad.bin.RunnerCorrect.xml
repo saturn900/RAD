@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><module name="Correcting LIDAR signals">
+  <title> Correcting LIDAR signals </title>
+  <exec_name> rad.bin.RunnerCorrect </exec_name>
+  <sufix> correct </sufix>
+  <exec_path> rad.bin </exec_path>
+  <parameters>
+    <par name="tau_slip" type="float">
+      0.00000004
+    </par> 
+  </parameters>
+  <outFile> 
+        <name> signal*.txt  </name>
+        <cols>
+          <col num="1">
+              <name> altitude </name>
+            <unit> km </unit>
+          </col>
+          <col num="2">
+            <name> signal </name>
+            <unit> photons </unit>
+          </col>
+        </cols> 
+     </outFile>
+     <graphics type="gnuplot">
+        <script>
+          set autoscale xy
+          set style data lines
+          set logscale x
+          plot "signal.txt" using 2:1
+          replot "signal.correct.txt" using 2:1
+          # pause -1 "Press Ok or Cancel to continue ..."
+          # pause 15
+        </script> 
+      </graphics>
+</module>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><!--  A SAMPLE set of task description  -->
+<worker author="Sherstoboev Dmitry" date="2010.05.14"
+  title="OIL Extraction forecast">
+  <module>
+    <title> Console oil forecaster </title>
+    <exec_name> MyOIL.exe</exec_name>
+    <exec_type> console </exec_type>
+    <exec_path> {app.home.path}/Oil </exec_path>
+    <parameters>
+              <par name="retry_count" type="integer" system="true">1</par>
+              <par console="">{method}</par>
+    </parameters>
+    <graphics type="gnuplot">
+          <script>
+
+
+#set multiplot
+set title "Oil extraction forecast"
+set xlabel "Mining Duration"
+set ylabel "Oil conservation"
+set autoscale xy
+#set origin 0.0,0.5
+plot 'gnuplot1.out' title 'Forecasted with method = {method}' with linespoints ,\
+  'gnuplot2.out' title 'Real values' with linespoints;
+#set autoscale xy
+#set origin 0.0,0.0;
+
+#unset multiplot
+
+
+
+
+
+
+
+          </script> 
+       </graphics>
+  </module>
+  <!--module>
+
+    <title> Just another graphic </title>
+        <exec_name> rad.bin.RunnerEmpty </exec_name>
+        <exec_type>java</exec_type>
+
+    <graphics type="gnuplot">
+
+    <script>
+    set autoscale xy
+    plot 'gnuplot3.out' title 'Forecast error' with linespoints
+    </script>
+    </graphics>
+  </module-->
+</worker>
+    

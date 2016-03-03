@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?><!--  A SAMPLE set of task description  -->
+<worker author="Ivan V. Boichenko" date="2007.05.13"
+  title="SURFACE params">
+
+  <module>
+    <title>Extract data from NCEP structures</title>
+    <exec_name>rad.bin.RunnerNCEPextractor</exec_name>
+    <exec_type>java</exec_type>
+    <exec_md5_hash />
+    <exec_path />
+    <parameters>
+      <par name="ncep_parent_path" type="string">{ncep.path}</par>
+      <par name="NCEP_T_file_name_prefix" type="string">air</par>
+      <par name="NCEP_rhum_file_name_prefix" type="string">
+        rhum
+      </par>
+      <par name="NCEP_uwnd_file_name_prefix" type="string">
+        uwnd
+      </par>
+      <par name="NCEP_vwnd_file_name_prefix" type="string">
+        vwnd
+      </par>
+      <par name="time_mode" type="string">manual</par>
+      <par name="coordinatesListFile" type="string">
+        subTraceInfo.out
+      </par>
+      <par name="wrap_points" type="integer">{ncep.wrap.points}</par>
+      <par name="time_back" type="integer"> 168 </par>
+      <parCat nameCat="manual_par">
+        <split type="single">
+          <par name="lat" type="double">
+            {target.lat.begin}
+          </par>
+          <end type="double">{target.lat.end}</end>
+          <step type="float">{target.lat.step}</step>
+        </split>
+
+        <split type="single">
+          <par name="lon" type="double">
+            {target.lon.begin}
+          </par>
+          <end type="double">{target.lon.end}</end>
+          <step type="float">{target.lon.step}</step>
+        </split>
+
+        <split type="single">
+          <par name="y" type="integer">{ncep.year}</par>
+          <end type="integer">{ncep.year.end}</end>
+          <step type="integer">{ncep.year.step}</step>
+        </split>
+
+        <split type="single">
+          <par name="m" type="integer">{ncep.month}</par>
+          <end type="integer">{ncep.month.end}</end>
+          <step type="integer">{ncep.month.step}</step>
+        </split>
+
+        <split type="single">
+          <par name="d" type="integer">{ncep.day}</par>
+          <end type="integer">{ncep.day.end}</end>
+          <step type="integer">{ncep.day.step}</step>
+        </split>
+
+        <split type="single">
+          <par name="h" type="integer">{ncep.hour}</par>
+          <end type="integer">{ncep.hour.end}</end>
+          <step type="integer">{ncep.hour.step}</step>
+        </split>
+
+      </parCat>
+
+      <comments>jan - 1</comments>
+      <comments>feb - 2</comments>
+      <comments>mar - 3</comments>
+      <comments>apr - 4</comments>
+      <comments>may - 5</comments>
+      <comments>jun - 6</comments>
+      <comments>jul - 7</comments>
+      <comments>aug - 8</comments>
+      <comments>sep - 9</comments>
+      <comments>oct - 10</comments>
+      <comments>nov - 11</comments>
+      <comments>dec - 12</comments>
+    </parameters>
+    <graphics type="gnuplot">
+      <script>
+        set dgrid3d 32,32,32 set style data lines splot
+        "air_gps.dat"
+      </script>
+    </graphics>
+
+  </module>
+  <module>
+    <title>NCEP meteoint</title>
+    <exec_name>meteoint.exe</exec_name>
+    <exec_type>console</exec_type>
+    <exec_md5_hash />
+    <exec_path>{app.home.path}/meteoint/</exec_path>
+    <parameters>
+      <!--parFile>  japan.ini </parFile-->
+      <par name="retry_count" type="integer" system="true">5</par>
+      <!--par name="coord_x" type="integer">0</par>
+      <par name="coord_y" type="integer">0</par>
+      <par name="near_st" type="integer">41</par>
+      <par name="num_point_x" type="integer">9</par>
+      <par name="num_point_y" type="integer">9</par>
+      <par name="time" type="integer">6</par-->
+
+ <!-- 
+ 0
+ 0
+ 41
+ 9
+ 9
+ 6
+!coord x
+!coord y
+!number of the nearest station
+!number points for x
+!number points for y
+!time (in hours) 
+
+ -->
+
+      <comments>
+        Interpolation using NCEP meteo information
+      </comments>
+    </parameters>
+  </module>
+
+</worker>

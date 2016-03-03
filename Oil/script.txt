@@ -1,0 +1,16 @@
+set size 0.6, 1 
+set multiplot
+set title "Oil extraction forecast"
+set xlabel "Mining Duration"
+set ylabel "Oil conservation"
+set autoscale xy
+set size 0.8, 0.5
+set origin 0.0,0.5
+plot 'gnuplot1.out' title 'Forecasted' with linespoints ,\
+	'gnuplot2.out' title 'Real values' with linespoints;
+set autoscale xy
+set ylabel "Error value"
+set origin 0.0,0.0;
+plot 'gnuplot3.out' title 'Forecast error' with linespoints;
+unset multiplot
+
