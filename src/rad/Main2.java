@@ -1,33 +1,33 @@
 package rad;
 
-import platform.ChargeRAD; 
-import platform.Splitter; 
+import platform.ChargeRAD;
+import platform.Splitter;
 import platform.Conf;
 
-import java.io.*; 
+import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.*; 
+import java.util.*;
 import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-import rad.bin.Runner; 
-import org.w3c.dom.Document; 
+import rad.bin.Runner;
+import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException; 
+import org.xml.sax.SAXException;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 /**
- * Стартовый класс. Основная задача считать аргументы командной строки (если есть), 
+ * Стартовый класс. Основная задача считать аргументы командной строки (если есть),
  * найти все ресурсы, запустить счет. Вывести сообщение об успешности запуска.
- * В некоторых режимах предусмотрено, что вызов метода main может происходить 
+ * В некоторых режимах предусмотрено, что вызов метода main может происходить
  * рекурсивно в процессе расчета. Это нужно в режиме "split", когда необходимо
- * провести перебор ряда входных параметров, и с каждым из них выполнить цепочку 
+ * провести перебор ряда входных параметров, и с каждым из них выполнить цепочку
  * расчета.
- * 
+ *
  */
 
 public class Main2 implements Runnable {
@@ -64,19 +64,19 @@ public class Main2 implements Runnable {
 	static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss,SSS"); // формат времени
 
 	/**
-	 * Разбор входных параметров, проверка на согласованность. 
+	 * Разбор входных параметров, проверка на согласованность.
 	 * Формирует Properties (список параметров)
 	 * для быстрого доступа из любой точки программы.
-	 * 
+	 *
 	 * Инициализирует ресурсы: все параметры, указанные файлы, пути
 	 * Вызывает методы на выполнение расчета.
-	 * 
+	 *
 	 * @param args
 	 */
 
 	public static void main(String[] args) {
 		try {
-			
+
 			System.out.println("user.dir :=" + System.getProperty("user.dir"));
 			mainEntryCounter++;
 			if (mainEntryCounter == 1) { // проверка, это первый вход или рекурсивный
@@ -86,7 +86,7 @@ public class Main2 implements Runnable {
 			;
 			String full_arg_string = "";
 			for (int i = 0; i <= args.length - 1; i++) {
-				full_arg_string = full_arg_string + args[i] + " "; // собираем все параметры командной строки в одну 
+				full_arg_string = full_arg_string + args[i] + " "; // собираем все параметры командной строки в одну
 				//б-а-альшую строку - нужно запомнить если потребуется рекурсивный вход
 			}
 
@@ -110,12 +110,12 @@ public class Main2 implements Runnable {
 			TimeZone tz = TimeZone.getTimeZone("GMT"); // опираемся на гринвич, а не на локальное время
 			TimeZone.setDefault(tz);
 
-			
+
 			/*
 			 * Далее идет блок разбора аргументов командной строки и соотв. инициализация
 			 */
 			String cfile;
-			if ((cfile = System.getProperty("config.file")) != null) { // был ли задан имя конфигурационного файла 
+			if ((cfile = System.getProperty("config.file")) != null) { // был ли задан имя конфигурационного файла
 				new Conf(cfile); // если да - заполняем Properties из файла по умолч + параметры из cfile
 				// свойства с одинаковыми именами будут в окончательном виде взяты из cfile
 			} else {
@@ -126,7 +126,7 @@ public class Main2 implements Runnable {
 
 				Conf.setProperty("app.home.path", get_path()); // задание свойства - текущий каталог, от него отсчитываются многие другие относит. пути
 				//printConf();
-				
+
 				printResolvedConf(); // сводный список всех действующих свойств
 
 				analizeConf(); // анализ заданных параметров на согласованность
@@ -136,11 +136,11 @@ public class Main2 implements Runnable {
 				return;
 			}
 			if (mainEntryCounter == 1) {
-				// запоминаем командную строку в специальном свойстве, 
+				// запоминаем командную строку в специальном свойстве,
 				//чтобы потом при рекурсии его можно было бы извлеч
-				Conf.setProperty("initial.cmd.arg.string", full_arg_string); 
+				Conf.setProperty("initial.cmd.arg.string", full_arg_string);
 			}
-			
+
 			// далее последовательность проверок свойств, выяснение режима в котором будет проведен расчет
 			// в каждом из if есть return поэтому после того как сработает хотя бы один из них, происходит выход из main
 			if (!isEmpty(Conf.run_par_file_path)) {
@@ -173,7 +173,7 @@ public class Main2 implements Runnable {
 				return;
 			} else {
 				throw new Exception("Property " + Conf.run_par_dir_path + " must exist, but not found \n" +
-				"value := " + Conf.getProperty(Conf.run_par_dir_path));				
+						"value := " + Conf.getProperty(Conf.run_par_dir_path));
 			}
 
 		} catch (Exception ioe) {
@@ -257,15 +257,15 @@ public class Main2 implements Runnable {
 		lg.fatal(exString);
 
 	}
-/**
- * Разбор всех аргументов командной строки и занесение их в Properties
- * при этом производится проверка. Все аргументы командной строки должны иметь известные имена.
- * То есть пользователь не может передать аргумент, который программе не известен.
- * Для этого все имена сравниваются с именами из файла свойств по умолчанию. Если пользователь
- * сделал опечатку или задал неизвестный параметр - выброс исключения и выход из программы.
- * @param args
- * @throws Exception
- */
+	/**
+	 * Разбор всех аргументов командной строки и занесение их в Properties
+	 * при этом производится проверка. Все аргументы командной строки должны иметь известные имена.
+	 * То есть пользователь не может передать аргумент, который программе не известен.
+	 * Для этого все имена сравниваются с именами из файла свойств по умолчанию. Если пользователь
+	 * сделал опечатку или задал неизвестный параметр - выброс исключения и выход из программы.
+	 * @param args
+	 * @throws Exception
+	 */
 	public static void parseArg(String args[]) throws Exception {
 		if (args.length == 0) {
 			System.out.println("No command string settings");
@@ -278,7 +278,7 @@ public class Main2 implements Runnable {
 				String cstr = args[i].replace("-D", "");
 				String patternStr = ".*[=]";
 				Pattern pattern = Pattern.compile(patternStr);
-				
+
 				int iEq = cstr.indexOf("=");
 				String propName = cstr.substring(0, iEq);
 				String propValue = cstr.substring(iEq + 1, cstr.length());
@@ -324,7 +324,7 @@ public class Main2 implements Runnable {
 		// logger.info(PROP.getProperty(Conf.debug_mode));
 
 	}
-	
+
 	public static void printResolvedConf() throws Exception {
 		// Properties PROP =
 		// Get all system properties
@@ -351,20 +351,20 @@ public class Main2 implements Runnable {
 		String home_path;
 
 		home_path = System.getProperty("user.dir");
-		/*Properties props = System.getProperties(); // Enumerate all system properties 
-		Enumeration en = props.propertyNames(); 
+		/*Properties props = System.getProperties(); // Enumerate all system properties
+		Enumeration en = props.propertyNames();
 		 //propName;
 		//String propValue;
-		for (; en.hasMoreElements(); ) { 
-			// Get property name 
-			String propName = (String)en.nextElement(); // Get property value 
-			String propValue = (String)props.get(propName); 
+		for (; en.hasMoreElements(); ) {
+			// Get property name
+			String propName = (String)en.nextElement(); // Get property value
+			String propValue = (String)props.get(propName);
 			System.out.println(propName +" = " + propValue);
 		}
-		
-		
-			
-		
+
+
+
+
 
 		File path = new File(home_path);
 		File parent1 = path.getParentFile();
@@ -379,7 +379,7 @@ public class Main2 implements Runnable {
 			}
 		}*/
 
-		 return home_path;
+		return home_path;
 	}
 
 	void initialize() {
@@ -729,7 +729,7 @@ public class Main2 implements Runnable {
 		 * e.printStackTrace(); }/
 		 **********************************************************************/
 		String ar[] = (String[]) LS.toArray(new String[LS.size()]);
-		TraceViewer.Main.main(ar);
+//		TraceViewer.Main.main(ar);
 
 	}
 

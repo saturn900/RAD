@@ -59,9 +59,9 @@ public class Scan implements Runnable {
 
 	static Logger logger = Logger.getLogger(Main2.class);
 
-	static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss,SSS"); // формат
+	static SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss,SSS"); // пїЅпїЅпїЅпїЅпїЅпїЅ
 
-	// времени
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 	static NetcdfFileWriteable ncFile = null;
 	static Array jdtarr = null;
@@ -95,14 +95,14 @@ public class Scan implements Runnable {
 					+ full_arg_string);
 			logger.debug(Locale.getDefault().toString());
 
-			Locale.setDefault(Locale.US); // устанавливает локаль в которой
-			// десятичным разделителем явл точка
+			Locale.setDefault(Locale.US); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
-			// устанавливаем временную зону GMT
-			// все даты, указанные в формате год месяц день и т.д. будут
-			// считаться в зоне GMT
-			// для времени в миллисекундах также будем считать для GMT если
-			// отдельно не указана дата
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ GMT
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅ.пїЅ. пїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ GMT
+			// пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ GMT пїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 
 			TimeZone tz = TimeZone.getTimeZone("GMT");
 			TimeZone.setDefault(tz);
@@ -277,31 +277,31 @@ public class Scan implements Runnable {
 
 	/*
 	 * public Main2(File dataFile, String DocFileXML, String IteratedXML) { //
-	 * конструктор // потока // (входной // файл, // дерево // параметров)
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ // пїЅпїЅпїЅпїЅпїЅпїЅ // (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ // пїЅпїЅпїЅпїЅ, // пїЅпїЅпїЅпїЅпїЅпїЅ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 	 * DataFile = dataFile; DocFile = DocFileXML; parTree =
 	 * getDOMfromXML(DocFileXML); // new // DomEcho(DocFileXML).getDocument();
 	 * initialize(); }
 	 * 
-	 * public Main2(File dataFile, String DocFileXML) { // конструктор потока //
-	 * (входной файл, дерево // параметров) DataFile = dataFile; DocFile =
+	 * public Main2(File dataFile, String DocFileXML) { // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ //
+	 * (пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) DataFile = dataFile; DocFile =
 	 * DocFileXML; parTree = getDOMfromXML(DocFileXML); // new //
 	 * DomEcho(DocFileXML).getDocument(); initialize(); }
 	 * 
 	 *//***********************************************************************
-		 * public Main (String DocFileXML){ // конструктор потока (файл
-		 * параметров) DataFile = null; // входной файл данных отсутствует
-		 * DocFile = DocFileXML; // файл параметров расчета parTree = new
-		 * DomEcho(DocFileXML).getDocument(); // дерево параметров после
-		 * обработки xml файла параметров }/
+		 * public Main (String DocFileXML){ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ
+		 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) DataFile = null; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		 * DocFile = DocFileXML; // пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ parTree = new
+		 * DomEcho(DocFileXML).getDocument(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
+		 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ xml пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ }/
 		 **********************************************************************/
 	/*
 	 * 
-	 * public Main2(Document doc) { // конструктор потока (дерево параметров)
-	 * DataFile = null; // входной файл отсутствует DocFile = null; parTree =
+	 * public Main2(Document doc) { // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+	 * DataFile = null; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DocFile = null; parTree =
 	 * doc; initialize(); }
 	 * 
-	 * public Main2(File dataFile, Document doc) { // конструктор потока (дерево //
-	 * параметров) DataFile = dataFile; // входной файл отсутствует DocFile =
+	 * public Main2(File dataFile, Document doc) { // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ //
+	 * пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ) DataFile = dataFile; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ DocFile =
 	 * null; parTree = doc; initialize(); }
 	 */
 
@@ -367,9 +367,9 @@ public class Scan implements Runnable {
 		return null;
 	}
 
-	// public Main (File dataFile, Document doc, String cmdKeys){ // конструктор
-	// потока (дерево параметров)
-	// DataFile = dataFile; // входной файл отсутствует
+	// public Main (File dataFile, Document doc, String cmdKeys){ // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
+	// DataFile = dataFile; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	// DocFile = null;
 	// parTree = doc;
 	// initialize();
@@ -441,9 +441,9 @@ public class Scan implements Runnable {
 	}
 
 	// public static void runGUI(String DocFileXML, File DataFile, GUIstarter
-	// GS) { // запуск
-	// // графической
-	// // оболочки
+	// GS) { // пїЅпїЅпїЅпїЅпїЅпїЅ
+	// // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	// String xml = null;
 	// if (DocFileXML == null) {
 	// xml = "resources/radDefault.xml";
@@ -457,14 +457,14 @@ public class Scan implements Runnable {
 	// GS.initialize();
 	// }
 	// FileAndTextTransferHandler FTTH = new FileAndTextTransferHandler(GS); //
-	// добавление
-	// // хэндлера
-	// // для
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	// // пїЅпїЅпїЅ
 	// // Drag-n-Drop
 	// DomEcho DE = new DomEcho(xml, FTTH);
-	// GS.getContentPane().add("Center", DE); // добавление документа,
-	// // размещенного в JPanel на
-	// // форму GuiStarter
+	// GS.getContentPane().add("Center", DE); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+	// // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ JPanel пїЅпїЅ
+	// // пїЅпїЅпїЅпїЅпїЅ GuiStarter
 	// GS.setDomEcho(DE);
 	// if (DataFile != null) {
 	// GS.setDataFile(DataFile);
@@ -485,10 +485,10 @@ public class Scan implements Runnable {
 		return result;
 	}
 
-	public void run() { // запуск потока
+	public void run() { // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-		// Создаем объект, запускающий непосредственно на выполнение узлы дерева
-		// параметров (файл_данных, временный каталог, дерево параметров)
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅ_пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ)
 		// Document DOC = new DomEcho(DocFile).getDocument();
 
 		File TmpDir = new File(TMP_DIR);
@@ -540,8 +540,8 @@ public class Scan implements Runnable {
 			 * "/" + "subTraceInfo.out"); }
 			 */
 			logger.info(ChRAD.getDataFile());
-			ChRAD.chargeAllNodes(); // запуск на выполнение всех узлов дерева
-			// параметров
+			ChRAD.chargeAllNodes(); // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			String wrkPath = ChRAD.getWrkPath();
 			if (Main2.isTrue(Conf.browser_run_flag)) {
 				runBrowser(wrkPath);
@@ -559,8 +559,8 @@ public class Scan implements Runnable {
 	private void replaceAllPropertyStringsInDOM(Document parTree2)
 			throws Exception {
 
-		// пройти по всем элементам дерева DOM и заменить во всех текстах
-		// строки типа {some.property} на конкретные значения из Conf
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ DOM пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ {some.property} пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ Conf
 		NodeList NL = parTree2.getChildNodes();
 		goOveAllNodes(NL);
 
@@ -621,7 +621,8 @@ public class Scan implements Runnable {
 		 * e.printStackTrace(); }/
 		 **********************************************************************/
 		String ar[] = (String[]) LS.toArray(new String[LS.size()]);
-		TraceViewer.Main.main(ar);
+		//TODO:РЅР°Р№С‚Рё С‚СЂРµР№СЃРІСЊСЋРµСЂ
+//		TraceViewer.Main.main(ar);
 
 	}
 
@@ -686,11 +687,11 @@ public class Scan implements Runnable {
 			logger.fatal("Execution stopped due to previous error");
 			return;
 		}
-		File fil = null; // = new File(data); // получаем очередной файл
-		// входных данных (не параметры!)
+		File fil = null; // = new File(data); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+		// пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!)
 		if ((fd != null) && !fd.exists()) {
-			// если входной файл с таким именем не существует, то
-			// пропускаем его выводя сообщение
+			// пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅ
+			// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 			System.out.println("Input File does not exist: "
 					+ fil.getAbsolutePath());
 			System.out.println("Sorry, Skipped");
